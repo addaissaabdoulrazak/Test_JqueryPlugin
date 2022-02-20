@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="page.html" method="get" id="formulaire">
+      <p>
+        <label for="pseudo">Pseudo</label>
+        <input type="text" name="pseudo" id="pseudo" />
+      </p>
+      <p>
+        <label for="">Email</label>
+        <input type="email" name="email" id="email" req />
+      </p>
+      <p>
+        <input type="submit" value="envoyer" />
+      </p>
+    </form>
+    <script src="./jquery.js"></script>
+    <script src="./jquery.validate.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#formulaire").validate({
+          //   nous allons apprendre a definir nos règle sans passer pas les propriété CSS "required".
+          rules: {
+            pseudo: "required",
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

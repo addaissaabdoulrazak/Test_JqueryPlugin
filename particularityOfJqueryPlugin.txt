@@ -1,0 +1,2 @@
+la particularité de ce plugin ce que nous pouvons definir des règles qui en anglais s'appellent rules
+lorsque vous ne voulez pas utiliser les attribut required ou lorsque vous souhaiter personnaliser vous même vos règles
