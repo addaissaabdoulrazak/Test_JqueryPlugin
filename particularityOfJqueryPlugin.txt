@@ -1,2 +1,48 @@
-la particularité de ce plugin ce que nous pouvons definir des règles qui en anglais s'appellent rules
-lorsque vous ne voulez pas utiliser les attribut required ou lorsque vous souhaiter personnaliser vous même vos règles
+la particularité de ce plugin (Validate Jquery) ce que nous pouvons definir des règles qui en anglais s'appellent rules
+lorsque nous ne voulons pas utiliser les attribut required ou lorsque vous souhaiter personnaliser vous même vos règles
+à travers l'utilisation de Jquery.
+
+Un Point Important a noté:
+--------------------------
+les address Email ont généralement deux contraint à verifier :
+
+la première contraint: assurer le remplissages du champs Email
+---------------------
+la seconde contraite: assurer la validation des données saisi pour qu'il respect les critère de l'eamil notamment les (@,.com/fr etc)
+--------------------
+
+ce principe doit être le même meme au niveau des rules(methode validate({rules:{}}) de Jquery )
+
+un autre point important: comment obtenir deux champs qui ont la même valeur par exemple(mot de passe vs confiramation de mot de pass)
+-------------------------
+avec l'utilisation des règles(rules) de Jquery, Noté Bien l'utilisation de la propropriété equalTo: "#id_property"
+
+
+NB: on remarque egalement que les règles fournis par le jquery de base comporte un defaut au niveau de l'address Email
+    car a partir du moment où vous saisissez le (@) suis d'un quelconque caractère tous en faisant abstraction (.com)
+    le champs de l'address email devient valide malgrès l'abstraction du (.com). et donc pour pallier a ce type de problème
+    la meilleur solution est de definir nos propre rules(règle) jquery => $.validator.addMethod("verify_email",function(value)){...},
+    qui nous permettra de renforçer le champs email via l'utilisation d'une expression regulière   
+
+Comment Mettre en Forme les Messages d'erreur en utilisant les styles css offert par ce plugin :
+-----------------------------------------------------------------------------------------------
+1- par exemple pour ciblé les messages d'erreur on utilise la propriété :
+ label.error{
+    color: "red",
+}
+
+2- et pour selection les champs nous allons utiliser la propriété :
+input.error{
+     border: 1px solid red,
+}
+
+3- et pour assurer la validation d'un champs input nous pouvons utiliser:
+
+input.valid{
+    border:1px solid green;
+}
+
+
+FIN
+
+/**************** Nous venons de faire le tours sur les pluggin de jquery ***************/

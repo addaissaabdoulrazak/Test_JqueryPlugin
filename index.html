@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="./Style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
@@ -13,8 +14,13 @@
         <input type="text" name="pseudo" id="pseudo" />
       </p>
       <p>
-        <label for="">Email</label>
-        <input type="email" name="email" id="email" req />
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+      </p>
+      <p>
+        <!-- pour bien assurrer la confirmation de l'email vous çetes obligé de passer par les rules de jquery -->
+        <label for="tata">Confiramation de l'address Email</label>
+        <input type="email" name="Confiramationemail" id="tata" />
       </p>
       <p>
         <input type="submit" value="envoyer" />
@@ -22,12 +28,77 @@
     </form>
     <script src="./jquery.js"></script>
     <script src="./jquery.validate.min.js"></script>
-    <script>
+    <!-- <script>
       $(document).ready(function () {
+        //Observé bien la façon d'établir des nouvelle règles 'dans' la methodes validate("dans")
         $("#formulaire").validate({
-          //   nous allons apprendre a definir nos règle sans passer pas les propriété CSS "required".
+          //1-nous allons apprendre a definir nos règle(rules) sans passer par les propriété CSS "required"
+          //au niveau du html, mais plutôt a travers le jquery
           rules: {
             pseudo: "required",
+            // lorsque nous avons plus d'une(1) règle a appliquer la présence des {} s'impose
+            email: {
+              required: true,
+              email: true,
+            },
+            Confiramationemail: {
+              required: true,
+              equalTo: "#email",
+            },
+          },
+          // 2- Nous allons apprendre a definir et personnaliser les message d'erreur coté jquery
+          messages: {
+            pseudo: "merci de bien vouloir renseigner votre pseudo",
+            email: {
+              required: "merci de bien vouloir renseigner un email",
+              email: "email invalide",
+            },
+            Confiramationemail: {
+              required: "merci de Bien vouloir confirmé l'address email",
+              equalTo: "email non egual",
+              email: "email non valide",
+            },
+          },
+        });
+      });
+    </script> -->
+    <script>
+      /*les regles qui nous */
+      // Apprendre a definir nos propre règles
+      $.validator.addMethod(
+        "Nom_de_la_Methode",
+        function (value) {
+          return /^[^@]+@[^@]+\.[^@]+$/.test(value);
+        },
+        "cet email n'est pas valide"
+      );
+
+      $(document).ready(function () {
+        $("#formulaire").validate({
+          //1- Les Règles
+          rules: {
+            pseudo: "required",
+            email: {
+              required: true,
+              email: true,
+              Nom_de_la_Methode: true,
+            },
+            Confiramationemail: {
+              required: true,
+              equalTo: "#email",
+            },
+          },
+          messages: {
+            pseudo: "merci de bien vouloir renseigner un pseudo",
+            email: {
+              required: "ce champs est requis",
+              email: "email n'est pas valide ",
+            },
+            Confiramationemail: {
+              required: "ce champs est requis",
+              equalTo: "email non egal",
+              email: "email invalide",
+            },
           },
         });
       });
